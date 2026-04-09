@@ -1,0 +1,293 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=JetBrains+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --bg-primary: #050A1A;
+  --bg-secondary: #0A1628;
+  --bg-card: rgba(15, 32, 64, 0.8);
+  --border: rgba(44, 122, 255, 0.15);
+  --border-hover: rgba(44, 122, 255, 0.4);
+  --accent-blue: #2C7AFF;
+  --accent-teal: #14B8A6;
+  --accent-crimson: #EF4444;
+  --accent-amber: #FBBF24;
+  --text-primary: #F0F4FF;
+  --text-secondary: #8BA3C7;
+  --text-muted: #4A6080;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Mesh background */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse 80% 50% at 20% 10%, rgba(44, 122, 255, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(20, 184, 166, 0.05) 0%, transparent 50%),
+    radial-gradient(ellipse 50% 60% at 50% 50%, rgba(239, 68, 68, 0.03) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Grid overlay */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(44, 122, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(44, 122, 255, 0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: rgba(44, 122, 255, 0.3); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(44, 122, 255, 0.6); }
+
+/* Custom checkbox */
+input[type="checkbox"] {
+  accent-color: var(--accent-blue);
+}
+
+/* Custom radio */
+input[type="radio"] {
+  accent-color: var(--accent-blue);
+}
+
+/* Input styles */
+.input-clinical {
+  background: rgba(10, 22, 40, 0.8);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  transition: all 0.2s ease;
+  border-radius: 8px;
+  padding: 0.625rem 0.875rem;
+  width: 100%;
+  font-size: 0.9rem;
+}
+
+.input-clinical:focus {
+  outline: none;
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 3px rgba(44, 122, 255, 0.12);
+  background: rgba(15, 32, 64, 0.9);
+}
+
+.input-clinical::placeholder {
+  color: var(--text-muted);
+}
+
+/* Card styles */
+.card-clinical {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  backdrop-filter: blur(12px);
+  transition: all 0.2s ease;
+}
+
+.card-clinical:hover {
+  border-color: var(--border-hover);
+}
+
+/* Section heading */
+.section-tag {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent-teal);
+  padding: 0.2rem 0.6rem;
+  border: 1px solid rgba(20, 184, 166, 0.3);
+  border-radius: 4px;
+  display: inline-block;
+}
+
+/* Risk badges */
+.badge-low {
+  background: rgba(20, 184, 166, 0.12);
+  border: 1px solid rgba(20, 184, 166, 0.3);
+  color: #2DD4BF;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.badge-intermediate {
+  background: rgba(251, 191, 36, 0.12);
+  border: 1px solid rgba(251, 191, 36, 0.3);
+  color: #FBBF24;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.badge-high {
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #F87171;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+/* Progress bar */
+.progress-track {
+  height: 2px;
+  background: rgba(44, 122, 255, 0.1);
+  border-radius: 1px;
+}
+
+.progress-fill {
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-blue), var(--accent-teal));
+  border-radius: 1px;
+  transition: width 0.4s ease;
+}
+
+/* Shimmer loading */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(15, 32, 64, 0.5) 0%,
+    rgba(44, 122, 255, 0.1) 50%,
+    rgba(15, 32, 64, 0.5) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Report section */
+.report-section {
+  border-left: 2px solid var(--accent-blue);
+  padding-left: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.report-section.warning {
+  border-left-color: var(--accent-amber);
+}
+
+.report-section.danger {
+  border-left-color: var(--accent-crimson);
+}
+
+.report-section.success {
+  border-left-color: var(--accent-teal);
+}
+
+/* Checkbox group */
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.checkbox-item:hover {
+  background: rgba(44, 122, 255, 0.06);
+  border-color: rgba(44, 122, 255, 0.15);
+}
+
+.checkbox-item input {
+  flex-shrink: 0;
+}
+
+/* Step indicator */
+.step-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(44, 122, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.step-dot.active {
+  background: var(--accent-blue);
+  box-shadow: 0 0 8px rgba(44, 122, 255, 0.5);
+}
+
+.step-dot.completed {
+  background: var(--accent-teal);
+}
+
+/* Markdown-like report text */
+.report-text h2 {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  color: var(--text-primary);
+  margin: 1.5rem 0 0.5rem;
+  font-weight: 600;
+}
+
+.report-text h3 {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent-teal);
+  margin: 1rem 0 0.4rem;
+}
+
+.report-text p {
+  color: var(--text-secondary);
+  line-height: 1.7;
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+}
+
+.report-text ul {
+  color: var(--text-secondary);
+  padding-left: 1.2rem;
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.report-text li {
+  margin-bottom: 0.3rem;
+}
+
+.report-text strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}

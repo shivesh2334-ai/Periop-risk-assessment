@@ -1,6 +1,4 @@
-#🫀
-
-**AI-Powered Perioperative Cardiac Risk Assessment Tool**
+🫀**AI-Powered Perioperative Cardiac Risk Assessment Tool**
 
 Built by [EMC Digitals (EasyMyCare)](https://emcdigitals.com) · Dr. Shivesh Kumar
 

@@ -1,1 +1,1 @@
-// Move existing types.ts content here
+// Your content from types.ts should be placed here

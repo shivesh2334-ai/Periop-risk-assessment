@@ -1,12 +1,17 @@
-// Layout file for the application
 import './globals.css';
 
-export default function RootLayout({ children }) {
+export const metadata = {
+  title: 'Perioperative Cardiac Risk Assessment',
+  description: 'AI-powered preoperative risk assessment tool',
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <html>
-      <head>
-        <title>Periop Risk Assessment</title>
-      </head>
+    <html lang="en">
       <body>{children}</body>
     </html>
   );

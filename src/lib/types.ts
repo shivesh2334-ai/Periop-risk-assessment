@@ -1,0 +1,1 @@
+// Move existing types.ts content here

@@ -1,4 +1,4 @@
-# CardioRisk Pre-Op 🫀
+#🫀
 
 **AI-Powered Perioperative Cardiac Risk Assessment Tool**
 

@@ -37,6 +37,13 @@ The tool generates structured reports covering:
 
 ---
 
+
+## Hybrid RAG and offline fallback
+
+Every assessment retrieves the most relevant curated passages from the five requested guideline domains. When `ANTHROPIC_API_KEY` is configured, those passages are supplied as bounded context to the model and the report is labelled `AI_RAG`. When the key is missing or the model request cannot start, the API returns a complete deterministic report labelled `LOCAL_KNOWLEDGE_BASE` with the same JSON schema, so the user interface continues to work.
+
+The curated summaries live in `src/lib/knowledge-base.ts`; the auditable rule engine is in `src/lib/local-assessment.ts`. Source URLs and knowledge-base chunk IDs are included for traceability. This implementation intentionally does not reproduce full copyrighted guideline text. Clinical recommendations must still be verified against the current official guideline and local protocols.
+
 ## Technology Stack
 
 | Layer | Technology |
@@ -44,7 +51,7 @@ The tool generates structured reports covering:
 | Framework | Next.js 14 (App Router) |
 | Language | TypeScript |
 | Styling | Tailwind CSS |
-| AI Engine | Anthropic Claude claude-opus-4-5 API |
+| AI Engine | Hybrid guideline RAG + deterministic local knowledge-base fallback |
 | Deployment | Vercel (Mumbai region - `bom1`) |
 | Fonts | Playfair Display + DM Sans + JetBrains Mono |
 
@@ -79,7 +86,7 @@ Full 12-item DASI questionnaire with weighted scoring:
 
 ### Prerequisites
 - Node.js 18+
-- Anthropic API key ([console.anthropic.com](https://console.anthropic.com))
+- Anthropic API key is optional; without one, the local guideline knowledge base generates the report
 
 ### Local Setup
 
@@ -93,7 +100,7 @@ npm install
 
 # Configure environment
 cp .env.example .env.local
-# Edit .env.local and add your ANTHROPIC_API_KEY
+# Optional: add ANTHROPIC_API_KEY to enable AI-enhanced RAG reports
 
 # Run development server
 npm run dev
